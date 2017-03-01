@@ -3,7 +3,6 @@ import spark.Session;
 import spark.Spark;
 import spark.template.mustache.MustacheTemplateEngine;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main {
@@ -21,21 +20,18 @@ public class Main {
 
                     String passWord = session.attribute("userPassword");
 
-            if (user == null) {
-                return new ModelAndView(m, "login.html");
-            } else {
+                    if (user == null) {
+                        return new ModelAndView(m, "login.html");
+                    } else {
 
-                if (user.passWord.contentEquals(passWord)) {
-                    m.put("name", user.name);
-                    m.put("password", user.passWord);
-                    m.put("messages", user.messages);
-                    return new ModelAndView(m, "messages.html");
-                }
-                else{
-                    return new ModelAndView(m, "login.html");
-                }
-            }
-        },
+                        if (user.passWord.contentEquals(passWord)) {
+                            m.put("messages", user.messages);
+                            return new ModelAndView(m, "messages.html");
+                        } else {
+                            return new ModelAndView(m, "login.html");
+                        }
+                    }
+                },
                 new MustacheTemplateEngine()
         );
 
@@ -44,7 +40,7 @@ public class Main {
             String passWord = request.queryParams("userPassword");
 
             User user = users.get(name);
-            if (user==null) {
+            if (user == null) {
                 user = new User(name);
                 user.passWord = passWord;
                 users.put(name, user);
@@ -86,7 +82,7 @@ public class Main {
 
             User user = users.get(session.attribute("userName"));
 
-            user.messages.remove(Integer.parseInt(messageNumber) -1);
+            user.messages.remove(Integer.parseInt(messageNumber) - 1);
             response.redirect("/");
             return "";
         });
@@ -98,7 +94,7 @@ public class Main {
 
             User user = users.get(session.attribute("userName"));
 
-            user.messages.set(Integer.parseInt(editNumber), message);
+            user.messages.set(Integer.parseInt(editNumber) - 1, message);
 
             response.redirect("/");
             return "";

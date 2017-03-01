@@ -5,21 +5,23 @@
     <title>Messages</title>
 </head>
 <body>
-
+Create Message:
 <form action="/create-message" method="post">
-    <input type="text" placeholder="Enter your message" size="100" name="message"/>
+    <input type="text" placeholder="Enter your message" size="50" name="message"/>
     <button type="submit">Submit</button>
 </form>
-
+<br>
+Delete message:
 <form action="/delete-message" method="post">
-    <input type="text" placeholder="Enter the number of the message to delete" size="50" name="delete"/>
+    <input type="number" placeholder="message number" size="5" name="delete"/>
     <button type="submit">Delete</button>
 </form>
-
+<br>
+Edit message
 <form action="/edit-message" method="post">
-    <input type="text" placeholder="Enter the number of the message to edit" size="50" name="editNumber"/>
-    <input type=text" placeholder="Enter the new message" size="100" name="editMessage"/>
-    <button type="submit">Submit</button>
+    <input type="number" placeholder="message number" size="5" name="editNumber"/>
+    <input type=text" placeholder="Enter new message" size="50" name="editMessage"/>
+    <button type="submit">Update</button>
 </form>
 
 </br>
